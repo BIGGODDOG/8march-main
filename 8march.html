@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>С 8 Марта! 🌸</title>
+
+  <!-- Open Graph -->
+  <!-- biggoddog.github.io/8march -->
+  <meta property="og:title" content="С 8 Марта, моя Анастасия 🌸" />
+  <meta property="og:description" content="Я собрал здесь несколько вещей, за которые люблю тебя особенно" />
+  <meta property="og:image" content="https://biggoddog.github.io/8march/8march-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://biggoddog.github.io/8march/8march-og.png" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --pink: #f8a4c8;
+      --rose: #e8527a;
+      --lilac: #c084fc;
+      --dark: #1a0a1e;
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --gold: #f5c842;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a0a1e 0%, #2d0f3a 40%, #1a1030 100%);
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ---- PETALS ---- */
+    .petals-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      top: -40px;
+      font-size: 18px;
+      animation: fall linear infinite;
+      opacity: 0.7;
+      user-select: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: translateY(50vh) rotate(180deg) translateX(30px);
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg) translateX(-20px);
+        opacity: 0;
+      }
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 16vw, 110px);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #f8a4c8, #e8527a, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 5vw, 28px);
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 32px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.4);
+      max-width: 300px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #e8527a, #c084fc);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 8px 32px rgba(232, 82, 122, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(232, 82, 122, 0.5);
+    }
+
+    .hero-btn:active {
+      transform: translateY(0);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.3;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-hint span {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    /* ---- SECTION INTRO ---- */
+    .section-intro {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px 48px;
+      text-align: center;
+    }
+
+    .section-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 7vw, 40px);
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 12px;
+    }
+
+    .section-intro p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.35);
+      max-width: 320px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ---- CARDS ---- */
+    .cards-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 0 16px 120px;
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s, background 0.3s;
+      backdrop-filter: blur(12px);
+    }
+
+    .card:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(248, 164, 200, 0.25);
+    }
+
+    .card.open {
+      border-color: rgba(248, 164, 200, 0.35);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .card.special {
+      background: rgba(245, 200, 66, 0.06);
+      border-color: rgba(245, 200, 66, 0.25);
+    }
+
+    .card.special:hover {
+      background: rgba(245, 200, 66, 0.1);
+      border-color: rgba(245, 200, 66, 0.4);
+    }
+
+    .card.special.open {
+      border-color: rgba(245, 200, 66, 0.5);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      user-select: none;
+    }
+
+    .card-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(248, 164, 200, 0.3), rgba(192, 132, 252, 0.3));
+      border: 1px solid rgba(248, 164, 200, 0.2);
+    }
+
+    .card.special .card-avatar {
+      background: linear-gradient(135deg, rgba(245, 200, 66, 0.25), rgba(255, 160, 100, 0.25));
+      border-color: rgba(245, 200, 66, 0.35);
+    }
+
+    .card-name {
+      flex: 1;
+    }
+
+    .card-name h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2px;
+    }
+
+    .card-name span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card.special .card-name span {
+      color: rgba(245, 200, 66, 0.6);
+    }
+
+    .card-arrow {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .card.open .card-arrow {
+      transform: rotate(180deg);
+      color: var(--pink);
+    }
+
+    .card.special.open .card-arrow {
+      color: var(--gold);
+    }
+
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card.open .card-body {
+      max-height: 1000px;
+    }
+
+    .card-content {
+      padding: 0 20px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 20px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .card-content p+p {
+      margin-top: 12px;
+    }
+
+    .card-content .highlight {
+      color: var(--pink);
+      font-style: italic;
+    }
+
+    .card.special .card-content .highlight {
+      color: var(--gold);
+    }
+
+    .card-content .emoji-row {
+      font-size: 22px;
+      margin-top: 16px;
+      letter-spacing: 4px;
+    }
+
+    /* ---- REACTIONS ---- */
+    .reactions {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      flex-wrap: wrap;
+    }
+
+    .reaction-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      padding: 7px 14px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: rgba(255, 255, 255, 0.5);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .reaction-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(248, 164, 200, 0.3);
+    }
+
+    .reaction-btn.active {
+      background: rgba(248, 164, 200, 0.12);
+      border-color: rgba(248, 164, 200, 0.4);
+      color: #f8a4c8;
+    }
+
+    .card.special .reaction-btn.active {
+      background: rgba(245, 200, 66, 0.12);
+      border-color: rgba(245, 200, 66, 0.4);
+      color: #f5c842;
+    }
+
+    .reaction-btn span.count {
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      min-width: 8px;
+    }
+
+    @keyframes reaction-pop {
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.35);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .reaction-btn.popping {
+      animation: reaction-pop 0.3s ease;
+    }
+
+    /* ---- OPEN ALL hint ---- */
+    .hint-tap {
+      text-align: center;
+      padding: 0 24px 24px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Falling petals -->
+  <div class="petals-canvas" id="petals"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-title" id="hero-title">8<br />Марта</div>
+    <div class="hero-sub" id="hero-sub">для моей Анастасии</div>
+
+    <p class="hero-desc" id="hero-desc">Для той, кто делает жизнь вокруг теплее — просто своим присутствием.</p>
+    <button class="hero-btn" id="hero-btn"
+      onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">
+      Нажми, моя любовь ↓
+    </button>
+    <div class="scroll-hint">
+      <span>скролл</span>
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <div class="section-intro">
+    <h2>Для тебя, моя Настюшенька</h2>
+    <p>Нажми на карточки — там разные вещи, за которые я тебя люблю</p>
+  </div>
+
+  <p class="hint-tap">↓ открой каждую карточку</p>
+
+  <!-- Cards -->
+  <div class="cards-wrap" id="cards">
+
+    <!-- ТЫ -->
+    <div class="card special" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">🌺</div>
+        <div class="card-name">
+          <h3>Ты</h3>
+          <span>самая главная причина</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Анастасия, моя дорогая.</p>
+          <p>Сегодня <span class="highlight">особенный день</span>, но для меня он особенный ещё и потому, что в этом
+            мире есть ты.</p>
+          <p>Ты умеешь делать удивительную вещь — <span class="highlight">наполнять обычные моменты жизнью, теплом и
+              смыслом</span>. Иногда одним словом, иногда улыбкой, иногда просто своим присутствием рядом.</p>
+          <p>Я хотел собрать здесь несколько маленьких вещей, за которые <span class="highlight">люблю тебя
+              особенно</span>. Но правда в том, что их <span class="highlight">намного больше</span>, чем можно уместить
+            в одной странице.</p>
+          <p><span class="highlight">С 8 марта, моя роднулька. Люблю тебя всем сердцем ❤️</span></p>
+          <div class="emoji-row">🌺❤️✨</div>
+          <div class="reactions" id="reactions-you"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Улыбка -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">😊</div>
+        <div class="card-name">
+          <h3>Твоя улыбка</h3>
+          <span>маленькое чудо</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>У тебя есть одна особенная способность — улыбаться так, что вокруг становится теплее.</p>
+          <p>Иногда это тихая, нежная улыбка. Иногда та самая, от которой <span class="highlight">невозможно не
+              улыбнуться самому</span>. (А я видел что уголки губ на <span class="highlight">милимилиметрик</span>
+            поднялись!)</p>
+          <p>И каждый раз в такие моменты кажется, будто мир на секунду <span class="highlight">становится лучше</span>.
+          </p>
+          <p><span class="highlight">Я очень люблю эту твою магию.</span></p>
+          <div class="emoji-row">😊🌸✨</div>
+          <div class="reactions" id="reactions-smile"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Сердце -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">💖</div>
+        <div class="card-name">
+          <h3>Твоё сердце</h3>
+          <span>которое хочется беречь</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>В тебе есть то, что встречается очень редко — <span class="highlight">настоящее доброе сердце</span>.</p>
+          <p>Ты умеешь переживать за людей, поддерживать, помогать, когда кому-то тяжело.</p>
+          <p>И иногда это похоже на то, как <span class="highlight">настоящий учитель заботится о своих учениках</span>
+            — спокойно, искренне и с большим теплом.</p>
+          <p>Такие люди делают мир светлее. И я каждый день чувствую, как светлее становится мой мир <span
+              class="highlight">рядом с тобой</span>.</p>
+          <div class="emoji-row">💖✨🌷</div>
+          <div class="reactions" id="reactions-heart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Твой характер -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">✨</div>
+        <div class="card-name">
+          <h3>Твой характер</h3>
+          <span>сила и нежность</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>В тебе удивительным образом сочетаются сила и нежность.</p>
+          <p>Ты умеешь быть мягкой и заботливой, но при этом внутри есть настоящий характер и внутренняя опора.</p>
+          <p>Ты не теряешь искренность, не прячешь свои эмоции и <span class="highlight">всегда остаёшься собой</span>.
+          </p>
+          <p>И именно это делает тебя такой яркой и живой, способной восхищать не только взгляд, <span
+              class="highlight">но и душу</span>.</p>
+          <div class="emoji-row">✨🌸💫</div>
+          <div class="reactions" id="reactions-character"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Твои глаза -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">👀</div>
+        <div class="card-name">
+          <h3>Твои глаза</h3>
+          <span>в них целый мир</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Иногда достаточно <span class="highlight">одного взгляда</span>, чтобы понять всё без слов.</p>
+          <p>В твоих глазах бывает столько разных эмоций — нежность, радость, иногда хитринка, иногда задумчивость.</p>
+          <p>И каждый раз в такие моменты я ловлю себя на мысли, что <span class="highlight">могу смотреть на тебя очень
+              долго</span>.</p>
+          <p>Вижу в них свет, который <span class="highlight">согревает даже в самые холодные дни</span>.</p>
+          <div class="emoji-row">👀✨🌙</div>
+          <div class="reactions" id="reactions-eyes"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Твой смех -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">🥰</div>
+        <div class="card-name">
+          <h3>Твой смех</h3>
+          <span>самый любимый звук</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Есть звук, который всегда поднимает настроение.</p>
+          <p>Твой смех — это не просто звук, это то, от чего на душе сразу <span class="highlight">становится
+              светлее</span>.</p>
+          <p>Он настоящий, искренний, иногда заразительный, иногда немного озорной.</p>
+          <p>В такие моменты хочется только одного — <span class="highlight">чтобы таких моментов в нашей жизни было как
+              можно больше</span>.</p>
+          <div class="emoji-row">😂💫🌸</div>
+          <div class="reactions" id="reactions-laugh"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Мой спутник -->
+    <div class="card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-avatar">🌷</div>
+        <div class="card-name">
+          <h3>Моя Принцесса</h3>
+          <span>и даже больше</span>
+        </div>
+        <div class="card-arrow">▾</div>
+      </div>
+      <div class="card-body">
+        <div class="card-content">
+          <p>Самое удивительное в тебе — это то, что тебе <span class="highlight">не нужно притворяться кем-то
+              другим</span>.</p>
+          <p>Ты уже та самая — яркая, искренняя, живая. И я хочу, чтобы ты всегда оставалась такой — <span
+              class="highlight">самой собой</span>.</p>
+          <p>Та, которая умеет вдохновлять, радовать, удивлять и наполнять этот мир красками.</p>
+          <p>И я очень счастлив, что именно ты рядом со мной. <span class="highlight">Моя любимая Анастасия.</span></p>
+          <div class="emoji-row">❤️🌸✨</div>
+          <div class="reactions" id="reactions-companion"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ---- TOGGLE CARD ----
+    function toggleCard(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.card.open').forEach(c => c.classList.remove('open'));
+      if (!isOpen) {
+        el.classList.add('open');
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
+    }
+
+    // ---- REACTIONS ----
+    const REACTION_EMOJIS = ['❤️', '🥰', '💖', '🌸'];
+    const REACTION_IDS = ['you', 'smile', 'heart', 'character', 'eyes', 'laugh', 'companion'];
+
+    function initReactions() {
+      REACTION_IDS.forEach(id => {
+        const wrap = document.getElementById('reactions-' + id);
+        if (!wrap) return;
+        REACTION_EMOJIS.forEach(emoji => {
+          const key = 'react_' + id + '_' + emoji;
+          const active = localStorage.getItem(key) === '1';
+          const btn = document.createElement('button');
+          btn.className = 'reaction-btn' + (active ? ' active' : '');
+          btn.innerHTML = emoji + '<span class="count"></span>';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = btn.classList.contains('active');
+            btn.classList.toggle('active', !isActive);
+            localStorage.setItem(key, isActive ? '0' : '1');
+            btn.classList.add('popping');
+            btn.addEventListener('animationend', () => btn.classList.remove('popping'), { once: true });
+          });
+          wrap.appendChild(btn);
+        });
+      });
+    }
+
+    initReactions();
+
+    // ---- PETALS ----
+    const petals = document.getElementById('petals');
+    const symbols = ['🌸', '🌺', '✿', '❀', '🌷'];
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      p.style.left = Math.random() * 100 + '%';
+      p.style.fontSize = (12 + Math.random() * 14) + 'px';
+      p.style.animationDuration = (6 + Math.random() * 10) + 's';
+      p.style.animationDelay = (Math.random() * 10) + 's';
+      p.style.opacity = (0.3 + Math.random() * 0.5).toString();
+      petals.appendChild(p);
+    }
+  </script>
+</body>
+
+</html>
